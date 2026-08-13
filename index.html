@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimas Ardian | Portofolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* VARIABEL WARNA (MODE TERANG - DEFAULT) */
+        :root {
+            --bg-color: #f8fafc; /* Putih keabu-abuan lembut */
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-secondary: #64748b;
+            --accent: #6366f1; /* Biru Indigo lembut */
+            --accent-hover: #4f46e5;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --wa-color: #10b981; /* Hijau WhatsApp pastel */
+            --wa-hover: #059669;
+            --nav-bg: rgba(248, 250, 252, 0.85);
+        }
+
+        /* VARIABEL WARNA (MODE GELAP) */
+        body.dark-mode {
+            --bg-color: #0f172a; /* Biru malam pekat, bukan hitam murni */
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #818cf8;
+            --accent-hover: #a5b4fc;
+            --border-color: #334155;
+            --shadow: 0 10px 30px rgba(0,0,0,0.4);
+            --wa-color: #10b981;
+            --wa-hover: #34d399;
+            --nav-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Navigasi */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+        nav h2 { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); }
+
+        /* Tombol Mode Gelap/Terang */
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        .theme-toggle:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .hero p.subtitle {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        /* Bagian Sapa Saya (Terpusat) */
+        .contact-center {
+            text-align: center;
+            max-width: 600px;
+            margin: -20px auto 70px auto; /* Menaikkan posisinya mendekati teks hero */
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+        
+        .contact-center h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+        
+        .contact-center p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-email {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        .btn-email:hover { background: var(--accent-hover); transform: translateY(-3px); }
+
+        .btn-wa {
+            background: var(--wa-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        .btn-wa:hover { background: var(--wa-hover); transform: translateY(-3px); }
+
+        /* Container & Bento Grid */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 50px; }
+        
+        .section-title { 
+            font-size: 1.8rem; 
+            margin-bottom: 30px; 
+            font-weight: 800; 
+            text-align: center; /* Dipindahkan ke tengah agar seimbang */
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .bento-card i.main-icon { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+        .bento-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-main); }
+        .bento-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .tag {
+            background: rgba(99, 102, 241, 0.1); color: var(--accent);
+            padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+        }
+
+        /* Modal / Pop-up Jendela */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
+        }
+
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px; padding: 40px; max-width: 600px; width: 90%;
+            transform: translateY(50px) scale(0.95); transition: all 0.4s ease;
+            position: relative; box-shadow: var(--shadow);
+        }
+
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+
+        .close-btn {
+            position: absolute; top: 20px; right: 20px; font-size: 1.5rem;
+            color: var(--text-secondary); cursor: pointer; transition: color 0.3s;
+        }
+        .close-btn:hover { color: #ef4444; }
+
+        .modal-content h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--accent); }
+        .modal-content ul { margin-top: 15px; padding-left: 20px; color: var(--text-secondary); }
+        .modal-content ul li { margin-bottom: 10px; }
+
+        footer { text-align: center; padding: 30px 20px; color: var(--text-secondary); margin-top: 20px; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } nav { padding: 15px 20px; } }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav>
+        <h2>Welcome to my portfolio.</h2>
+        <!-- Tombol Ganti Mode Gelap/Terang -->
+        <button class="theme-toggle" id="themeBtn" aria-label="Ganti Mode">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" data-aos="fade-up" data-aos-duration="1000">
+        <img src="https://i.ibb.co/SDggjfqh/profil.jpg" alt="Dimas Ardian" class="profile-img">
+        <p class="subtitle">Siswa SMAN 1 Ketapang</p>
+        <h1>Dimas Ardian</h1>
+        <p style="color: var(--text-secondary); max-width: 550px; font-size: 1.05rem; margin-bottom: 40px;">
+            Seorang pembelajar yang antusias dengan fokus pada pengembangan kemampuan linguistik, teknologi, dan eksplorasi proyek kreatif.
+        </p>
+    </header>
+
+    <!-- BAGIAN SAPA SAYA (Terpusat) -->
+    <div class="container" style="padding-bottom: 0;">
+        <div class="contact-center" data-aos="zoom-in" data-aos-delay="200">
+            <h3>Mari Terhubung!</h3>
+            <p>Punya ide kolaborasi, pertanyaan, atau sekadar ingin menyapa? Silakan hubungi saya melalui platform di bawah ini.</p>
+            <div class="btn-group">
+                <!-- Tombol Email -->
+                <a href="mailto:dimzetk@gmail.com" class="btn btn-email">
+                    <i class="fa-regular fa-envelope"></i> Email Saya
+                </a>
+                <!-- Tombol WhatsApp -->
+                <!-- GANTI "628XXXXXXXXXX" DI BAWAH INI DENGAN NOMOR WA KAMU -->
+                <a href="https://wa.me/6285732530608" target="_blank" class="btn btn-wa">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bagian Utama Konten -->
+    <div class="container">
+        
+        <h2 class="section-title" data-aos="fade-up">Keahlian & Minat</h2>
+        <div class="bento-grid">
+            
+            <div class="bento-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-earth-asia main-icon"></i>
+                <h3>Bahasa & Komunikasi</h3>
+                <p>Memiliki kemampuan linguistik yang kuat untuk memperluas wawasan dan mendukung komunikasi global yang efektif.</p>
+                <div class="tags">
+                    <span class="tag">Bahasa Inggris</span>
+                    <span class="tag">Bahasa Indonesia</span>
+                </div>
+            </div>
+
+            <div class="bento-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-code main-icon"></i>
+                <h3>Teknologi & Pengembangan</h3>
+                <p>Mengeksplorasi manajemen proyek teknis, penulisan kode, dan implementasi deployment web portofolio.</p>
+                <div class="tags">
+                    <span class="tag">GitHub</span>
+                    <span class="tag">Netlify</span>
+                </div>
+            </div>
+
+            <div class="bento-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-server main-icon"></i>
+                <h3>Manajemen Server & Apresiasi</h3>
+                <p>Berpengalaman mengelola instance server secara mandiri serta memiliki apresiasi terhadap karya sinematik.</p>
+                <div class="tags">
+                    <span class="tag">Aternos Server</span>
+                    <span class="tag">Cinematic Music</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-aos="fade-up">Proyek Kreatif</h2>
+        <div class="bento-grid" style="grid-template-columns: 1fr;">
+            
+            <div class="bento-card" data-aos="zoom-in" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center;">
+                <div style="flex: 1; min-width: 250px;">
+                    <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;"><i class="fa-regular fa-calendar"></i> Diselesaikan: Agustus 2025</span>
+                    <h3 style="font-size: 1.4rem; margin-top: 8px;">Proyek Pakaian Daur Ulang</h3>
+                    <p style="margin-top: 10px; margin-bottom: 20px;">Inisiatif mengolah bahan-bahan bekas menjadi pakaian bernilai guna, melatih kemampuan *problem-solving* serta kepedulian lingkungan.</p>
+                    <button class="btn btn-email" style="display: inline-flex;" onclick="bukaModal()">Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div>
+                    <i class="fa-solid fa-leaf" style="font-size: 5rem; color: var(--wa-color); opacity: 0.3;"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dimas Ardian Portfolio.</p>
+    </footer>
+
+    <!-- MODAL / JENDELA POP-UP -->
+    <div id="modalProyek" class="modal-overlay">
+        <div class="modal-content">
+            <i class="fa-solid fa-xmark close-btn" onclick="tutupModal()"></i>
+            <h3>Detail: Pakaian Daur Ulang</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 15px;">Inisiatif ini dirancang untuk menjawab tantangan limbah tekstil dengan pendekatan yang kreatif dan praktis.</p>
+            
+            <h4 style="margin-top: 15px; color: var(--text-main);">Fokus Utama Proyek:</h4>
+            <ul>
+                <li><strong>Kreativitas & Estetika:</strong> Merancang ulang material yang sudah tidak terpakai menjadi potongan pakaian dengan gaya baru.</li>
+                <li><strong>Keberlanjutan Lingkungan:</strong> Mengurangi jejak limbah secara langsung melalui praktik *upcycling*.</li>
+                <li><strong>Pemecahan Masalah:</strong> Menemukan solusi teknis untuk menggabungkan berbagai tekstur dan bahan yang berbeda menjadi satu kesatuan.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Script AOS & Dark Mode -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+
+        // --- LOGIKA TOMBOL DARK/LIGHT MODE ---
+        const themeBtn = document.getElementById('themeBtn');
+        const themeIcon = themeBtn.querySelector('i');
+
+        // Secara default, website kita pakai mode Terang. Jika diklik:
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            // Mengubah ikon Bulan (Gelap) menjadi Matahari (Terang) dan sebaliknya
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // --- LOGIKA MODAL ---
+        const modal = document.getElementById('modalProyek');
+        function bukaModal() { modal.classList.add('active'); }
+        function tutupModal() { modal.classList.remove('active'); }
+        window.onclick = function(event) { if (event.target == modal) { tutupModal(); } }
+    </script>
+</body>
+</html>
